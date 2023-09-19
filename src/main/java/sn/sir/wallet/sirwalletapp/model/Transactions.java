@@ -8,7 +8,7 @@ import java.util.Date;
 @Entity
 public class Transactions {
     @Id
-    private Long id;
+    private int id;
     @Column
     private Double montant;
     @Column
@@ -20,7 +20,7 @@ public class Transactions {
     @Column
     private int idR;
 
-    public Transactions(Long id, Double montant, Date date, int etat, int idE, int idR) {
+    public Transactions(int id, Double montant, Date date, int etat, int idE, int idR) {
         this.id = id;
         this.montant = montant;
         this.date = date;
@@ -32,11 +32,11 @@ public class Transactions {
 
     }
 
-    public Long getId() {
+    public int getId() {
         return id;
     }
 
-    public void setId(Long id) {
+    public void setId(int id) {
         this.id = id;
     }
 
