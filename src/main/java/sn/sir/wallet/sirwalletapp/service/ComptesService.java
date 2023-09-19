@@ -30,6 +30,7 @@ public class ComptesService {
         mapToEntity(comptesDTO, comptes);
         return comptesRepository.save(comptes).getId();
     }
+
     public Comptes getCompteById(final int id) {
         try {
             return comptesRepository.findById(id)
@@ -39,35 +40,8 @@ public class ComptesService {
             throw new RuntimeException(e);
         }
     }
-    public void transfert(final Comptes comptes1,final Comptes comptes2,Double montantTransaction)
-    {
-        if(comptes1.getSolde()>=montantTransaction)
-        {
-            comptes1.setSolde(comptes1.getSolde()-montantTransaction);
-            comptesRepository.save(comptes1);
-            comptes2.setSolde(comptes2.getSolde()+montantTransaction);
-            comptesRepository.save(comptes2);
-        }
-    }
 
-    public void retrait(final Comptes comptes,Double montantTransaction)
-    {
-        if(comptes.getSolde()>=montantTransaction)
-        {
-            Double soldeActuel=comptes.getSolde();
-            Double nouveauSolde  =soldeActuel-montantTransaction;
-            comptes.setSolde(nouveauSolde);
-            comptesRepository.save(comptes);
-        }
-    }
-    public void depot(final Comptes comptes,Double montantTransaction)
-    {
-        Double soldeActuel=comptes.getSolde();
-        Double NouveauSolde  =soldeActuel+montantTransaction;
-        comptes.setSolde(NouveauSolde);
-        comptesRepository.save(comptes);
 
-    }
     private Comptes mapToDTO(final Comptes comptes, final Comptes comptesDTO) {
         comptesDTO.setId(comptes.getId());
         comptesDTO.setSolde(comptes.getSolde());
@@ -76,6 +50,7 @@ public class ComptesService {
         comptesDTO.setIdUser(comptes.getIdUser());
         return comptesDTO;
     }
+
     private Comptes mapToEntity(final Comptes comptesDTO, final Comptes comptes) {
         comptes.setSolde(comptesDTO.getSolde());
         comptes.setDateOuverture(comptesDTO.getDateOuverture());
