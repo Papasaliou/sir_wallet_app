@@ -16,17 +16,20 @@ public class UsersService {
     public UsersService(UsersRepository usersRepository) {
         this.usersRepository = usersRepository;
     }
+
     public int creer(Users users){
         final Users userss = new Users();
         mapToEntity(users, userss);
         return usersRepository.save(users).getId();
     }
+
     public List<Users> listeUsers(){
         final List<Users> userss = usersRepository.findAll(Sort.by("id"));
         return userss.stream()
                 .map(users -> mapToDTO(users, new Users()))
                 .toList();
     }
+
     public Users get(final int id) {
         try {
             return usersRepository.findById(id)
@@ -36,6 +39,7 @@ public class UsersService {
             throw new RuntimeException(e);
         }
     }
+
     public void delete(final int id) {
         usersRepository.deleteById(id);
     }
@@ -48,6 +52,7 @@ public class UsersService {
         //usersDTO.setComptes(users.getComptes() == null ? null : users.getComptes().getId());
         return usersDTO;
     }
+
     private Users mapToEntity(final Users usersDTO, final Users users) {
         users.setPrenom(usersDTO.getPrenom());
         users.setNom(usersDTO.getNom());
