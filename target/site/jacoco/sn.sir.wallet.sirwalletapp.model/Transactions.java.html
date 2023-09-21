@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="fr"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>Transactions.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">sir-wallet-app</a> &gt; <a href="index.source.html" class="el_package">sn.sir.wallet.sirwalletapp.model</a> &gt; <span class="el_source">Transactions.java</span></div><h1>Transactions.java</h1><pre class="source lang-java linenums">package sn.sir.wallet.sirwalletapp.model;
+
+import jakarta.persistence.*;
+
+import java.time.LocalDate;
+import java.util.Date;
+
+@Entity
+public class Transactions {
+    @Id
+    private int id;
+    @Column
+    private Double montant;
+    @Column
+    private Date date;
+    @Column
+    private int etat;
+    @Column
+    private int idE;
+    @Column
+    private int idR;
+
+<span class="fc" id="L23">    public Transactions(int id, Double montant, Date date, int etat, int idE, int idR) {</span>
+<span class="fc" id="L24">        this.id = id;</span>
+<span class="fc" id="L25">        this.montant = montant;</span>
+<span class="fc" id="L26">        this.date = date;</span>
+<span class="fc" id="L27">        this.etat = etat;</span>
+<span class="fc" id="L28">        this.idE = idE;</span>
+<span class="fc" id="L29">        this.idR = idR;</span>
+<span class="fc" id="L30">    }</span>
+<span class="nc" id="L31">    public Transactions(){</span>
+
+<span class="nc" id="L33">    }</span>
+
+    public int getId() {
+<span class="fc" id="L36">        return id;</span>
+    }
+
+    public void setId(int id) {
+<span class="nc" id="L40">        this.id = id;</span>
+<span class="nc" id="L41">    }</span>
+
+    public Double getMontant() {
+<span class="fc" id="L44">        return montant;</span>
+    }
+
+    public void setMontant(Double montant) {
+<span class="nc" id="L48">        this.montant = montant;</span>
+<span class="nc" id="L49">    }</span>
+
+    public Date getDate() {
+<span class="fc" id="L52">        return date;</span>
+    }
+
+    public void setDate(Date date) {
+<span class="nc" id="L56">        this.date = date;</span>
+<span class="nc" id="L57">    }</span>
+
+    public int getEtat() {
+<span class="fc" id="L60">        return etat;</span>
+    }
+
+    public void setEtat(int etat) {
+<span class="nc" id="L64">        this.etat = etat;</span>
+<span class="nc" id="L65">    }</span>
+
+    public int getIdE() {
+<span class="fc" id="L68">        return idE;</span>
+    }
+
+    public void setIdE(int idE) {
+<span class="nc" id="L72">        this.idE = idE;</span>
+<span class="nc" id="L73">    }</span>
+
+    public int getIdR() {
+<span class="fc" id="L76">        return idR;</span>
+    }
+
+    public void setIdR(int idR) {
+<span class="nc" id="L80">        this.idR = idR;</span>
+<span class="nc" id="L81">    }</span>
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.8.202204050719</span></div></body></html>

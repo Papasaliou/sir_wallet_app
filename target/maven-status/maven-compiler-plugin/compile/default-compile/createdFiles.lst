@@ -1,0 +1,13 @@
+sn\sir\wallet\sirwalletapp\repository\UsersRepository.class
+sn\sir\wallet\sirwalletapp\model\Transactions.class
+sn\sir\wallet\sirwalletapp\repository\ComptesRepository.class
+sn\sir\wallet\sirwalletapp\controller\TransactionsController.class
+sn\sir\wallet\sirwalletapp\controller\ComptesController.class
+sn\sir\wallet\sirwalletapp\service\ComptesService.class
+sn\sir\wallet\sirwalletapp\service\TransactionsService.class
+sn\sir\wallet\sirwalletapp\controller\UsersController.class
+sn\sir\wallet\sirwalletapp\SirWalletAppApplication.class
+sn\sir\wallet\sirwalletapp\model\Users.class
+sn\sir\wallet\sirwalletapp\service\UsersService.class
+sn\sir\wallet\sirwalletapp\repository\TransactionsRepository.class
+sn\sir\wallet\sirwalletapp\model\Comptes.class

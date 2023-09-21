@@ -1,0 +1,11 @@
+GROUP,PACKAGE,CLASS,INSTRUCTION_MISSED,INSTRUCTION_COVERED,BRANCH_MISSED,BRANCH_COVERED,LINE_MISSED,LINE_COVERED,COMPLEXITY_MISSED,COMPLEXITY_COVERED,METHOD_MISSED,METHOD_COVERED
+sir-wallet-app,sn.sir.wallet.sirwalletapp,SirWalletAppApplication,5,3,0,0,2,1,1,1,1,1
+sir-wallet-app,sn.sir.wallet.sirwalletapp.service,ComptesService,106,9,0,0,23,4,7,1,7,1
+sir-wallet-app,sn.sir.wallet.sirwalletapp.service,TransactionsService,308,12,6,0,65,5,15,1,12,1
+sir-wallet-app,sn.sir.wallet.sirwalletapp.service,UsersService,112,6,0,0,25,3,8,1,8,1
+sir-wallet-app,sn.sir.wallet.sirwalletapp.model,Users,0,56,0,0,0,24,0,12,0,12
+sir-wallet-app,sn.sir.wallet.sirwalletapp.model,Comptes,0,56,0,0,0,24,0,12,0,12
+sir-wallet-app,sn.sir.wallet.sirwalletapp.model,Transactions,27,39,0,0,14,14,7,7,7,7
+sir-wallet-app,sn.sir.wallet.sirwalletapp.controller,ComptesController,15,6,0,0,4,3,3,1,3,1
+sir-wallet-app,sn.sir.wallet.sirwalletapp.controller,TransactionsController,59,12,0,0,16,5,7,1,7,1
+sir-wallet-app,sn.sir.wallet.sirwalletapp.controller,UsersController,20,6,0,0,6,3,4,1,4,1

@@ -1,0 +1,145 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="fr"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>TransactionsService.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">sir-wallet-app</a> &gt; <a href="index.source.html" class="el_package">sn.sir.wallet.sirwalletapp.service</a> &gt; <span class="el_source">TransactionsService.java</span></div><h1>TransactionsService.java</h1><pre class="source lang-java linenums">package sn.sir.wallet.sirwalletapp.service;
+
+import org.springframework.data.crossstore.ChangeSetPersister;
+import org.springframework.data.domain.Sort;
+import org.springframework.stereotype.Service;
+import sn.sir.wallet.sirwalletapp.model.Comptes;
+import sn.sir.wallet.sirwalletapp.model.Transactions;
+import sn.sir.wallet.sirwalletapp.repository.ComptesRepository;
+import sn.sir.wallet.sirwalletapp.repository.TransactionsRepository;
+import sn.sir.wallet.sirwalletapp.repository.UsersRepository;
+
+import java.util.Date;
+import java.util.List;
+
+@Service
+public class TransactionsService {
+    private ComptesRepository comptesRepository;
+    private UsersRepository usersRepository;
+    private TransactionsRepository transactionsRepository;
+
+<span class="fc" id="L21">    public TransactionsService(ComptesRepository comptesRepository, UsersRepository usersRepository, TransactionsRepository transactionsRepository) {</span>
+<span class="fc" id="L22">        this.comptesRepository = comptesRepository;</span>
+<span class="fc" id="L23">        this.usersRepository = usersRepository;</span>
+<span class="fc" id="L24">        this.transactionsRepository = transactionsRepository;</span>
+<span class="fc" id="L25">    }</span>
+
+    public void annullerTransaction(int id)
+    {
+<span class="nc" id="L29">        Transactions transactions= transactionsRepository.getReferenceById(id);</span>
+<span class="nc bnc" id="L30" title="All 2 branches missed.">        if(transactions.getEtat()==1)</span>
+        {
+<span class="nc" id="L32">            Comptes comptes1=comptesRepository.getReferenceById(transactions.getIdE());</span>
+<span class="nc" id="L33">            Comptes comptes2=comptesRepository.getReferenceById(transactions.getIdR());</span>
+<span class="nc" id="L34">            Double soldeActuelCmp1= comptes1.getSolde();</span>
+<span class="nc" id="L35">            Double soldeActuelCmp2= comptes2.getSolde();</span>
+<span class="nc" id="L36">            comptes2.setSolde(soldeActuelCmp2-transactions.getMontant());</span>
+<span class="nc" id="L37">            comptes1.setSolde(soldeActuelCmp1+transactions.getMontant());</span>
+<span class="nc" id="L38">            transactions.setEtat(0);</span>
+<span class="nc" id="L39">            transactionsRepository.save(transactions);</span>
+<span class="nc" id="L40">            comptesRepository.save(comptes1);</span>
+<span class="nc" id="L41">            comptesRepository.save(comptes2);</span>
+        }
+
+<span class="nc" id="L44">    }</span>
+
+    public void depot(final Comptes comptes,Double montantTransaction)
+    {
+<span class="nc" id="L48">        Double soldeActuel=comptes.getSolde();</span>
+<span class="nc" id="L49">        Double NouveauSolde  =soldeActuel+montantTransaction;</span>
+<span class="nc" id="L50">        comptes.setSolde(NouveauSolde);</span>
+<span class="nc" id="L51">        comptesRepository.save(comptes);</span>
+<span class="nc" id="L52">        insertIntoTransaction(montantTransaction,comptes.getId(),comptes.getId());</span>
+<span class="nc" id="L53">    }</span>
+
+    public void retrait(final Comptes comptes,Double montantTransaction)
+    {
+<span class="nc bnc" id="L57" title="All 2 branches missed.">        if(comptes.getSolde()&gt;=montantTransaction)</span>
+        {
+<span class="nc" id="L59">            Double soldeActuel=comptes.getSolde();</span>
+<span class="nc" id="L60">            Double nouveauSolde  =soldeActuel-montantTransaction;</span>
+<span class="nc" id="L61">            comptes.setSolde(nouveauSolde);</span>
+<span class="nc" id="L62">            comptesRepository.save(comptes);</span>
+<span class="nc" id="L63">            insertIntoTransaction(montantTransaction,comptes.getId(),comptes.getId());</span>
+        }
+<span class="nc" id="L65">    }</span>
+
+    public void transfert(final Comptes comptes1, final Comptes comptes2, Double montantTransaction)
+    {
+<span class="nc bnc" id="L69" title="All 2 branches missed.">        if(comptes1.getSolde()&gt;=montantTransaction)</span>
+        {
+<span class="nc" id="L71">            comptes1.setSolde(comptes1.getSolde()-montantTransaction);</span>
+<span class="nc" id="L72">            comptesRepository.save(comptes1);</span>
+<span class="nc" id="L73">            comptes2.setSolde(comptes2.getSolde()+montantTransaction);</span>
+<span class="nc" id="L74">            comptesRepository.save(comptes2);</span>
+<span class="nc" id="L75">            insertIntoTransaction(montantTransaction,comptes1.getId(),comptes2.getId());</span>
+        }
+<span class="nc" id="L77">    }</span>
+
+    public void insertIntoTransaction(Double montant,int idE,int idR)
+    {
+<span class="nc" id="L81">        Transactions transactions =new Transactions();</span>
+<span class="nc" id="L82">        transactions.setMontant(montant);</span>
+<span class="nc" id="L83">        transactions.setEtat(1);</span>
+<span class="nc" id="L84">        transactions.setIdE(idE);</span>
+<span class="nc" id="L85">        transactions.setIdR(idR);</span>
+<span class="nc" id="L86">        this.transactionsRepository.save(transactions);</span>
+<span class="nc" id="L87">    }</span>
+
+    public int createTransaction(final Transactions transactionsDTO) {
+<span class="nc" id="L90">        final Transactions transactions = new Transactions();</span>
+<span class="nc" id="L91">        mapToEntity(transactionsDTO, transactions);</span>
+<span class="nc" id="L92">        return transactionsRepository.save(transactions).getId();</span>
+    }
+
+    public List&lt;Transactions&gt; findAllTransaction() {
+<span class="nc" id="L96">        final List&lt;Transactions&gt; transactionss = transactionsRepository.findAll(Sort.by(&quot;id&quot;));</span>
+<span class="nc" id="L97">        return transactionss.stream()</span>
+<span class="nc" id="L98">                .map(transactions -&gt; mapToDTO(transactions, new Transactions()))</span>
+<span class="nc" id="L99">                .toList();</span>
+    }
+
+    public Transactions getTransaction(final int id) {
+        try {
+<span class="nc" id="L104">            return transactionsRepository.findById(id)</span>
+<span class="nc" id="L105">                    .map(transactions -&gt; mapToDTO(transactions, new Transactions()))</span>
+<span class="nc" id="L106">                    .orElseThrow(ChangeSetPersister.NotFoundException::new);</span>
+<span class="nc" id="L107">        } catch (ChangeSetPersister.NotFoundException e) {</span>
+<span class="nc" id="L108">            throw new RuntimeException(e);</span>
+        }
+    }
+
+    private Transactions mapToDTO(final Transactions transactions,
+                                     final Transactions transactionsDTO) {
+<span class="nc" id="L114">        transactionsDTO.setId(transactions.getId());</span>
+<span class="nc" id="L115">        transactionsDTO.setMontant(transactions.getMontant());</span>
+<span class="nc" id="L116">        transactionsDTO.setDate(transactions.getDate());</span>
+<span class="nc" id="L117">        transactionsDTO.setEtat(transactions.getEtat());</span>
+<span class="nc" id="L118">        transactionsDTO.setIdE(transactions.getIdE());</span>
+<span class="nc" id="L119">        transactionsDTO.setIdR(transactions.getIdR());</span>
+//        transactionsDTO.setComptes(transactions.getComptes() == null ? null : transactions.getComptes().getId());
+//        transactionsDTO.setComptess(transactions.getComptess() == null ? null : transactions.getComptess().getId());
+<span class="nc" id="L122">        return transactionsDTO;</span>
+    }
+
+    private Transactions mapToEntity(final Transactions transactionsDTO,
+                                     final Transactions transactions) {
+<span class="nc" id="L127">        transactionsDTO.setMontant(transactions.getMontant());</span>
+<span class="nc" id="L128">        transactionsDTO.setDate(transactions.getDate());</span>
+<span class="nc" id="L129">        transactionsDTO.setEtat(transactions.getEtat());</span>
+<span class="nc" id="L130">        transactionsDTO.setIdE(transactions.getIdE());</span>
+<span class="nc" id="L131">        transactionsDTO.setIdR(transactions.getIdR());</span>
+//        final Comptes comptes = transactionsDTO.getComptes() == null ? null : comptesRepository.findById(transactionsDTO.getComptes())
+//                .orElseThrow(() -&gt; new NotFoundException(&quot;comptes not found&quot;));
+//        transactions.setComptes(comptes);
+//        final Comptes comptess = transactionsDTO.getComptess() == null ? null : comptesRepository.findById(transactionsDTO.getComptess())
+//                .orElseThrow(() -&gt; new NotFoundException(&quot;comptess not found&quot;));
+//        transactions.setComptess(comptess);
+<span class="nc" id="L138">        return transactions;</span>
+    }
+
+
+
+
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.8.202204050719</span></div></body></html>
