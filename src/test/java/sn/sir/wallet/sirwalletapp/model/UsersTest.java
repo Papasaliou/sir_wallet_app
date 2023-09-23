@@ -1,10 +1,16 @@
 package sn.sir.wallet.sirwalletapp.model;
-
+import org.antlr.v4.runtime.misc.LogManager;
 import org.junit.jupiter.api.Test;
+import org.springframework.context.annotation.Configuration;
+import sn.sir.wallet.sirwalletapp.repository.UsersRepository;
+import sn.sir.wallet.sirwalletapp.service.UsersService;
 
 import static org.junit.jupiter.api.Assertions.*;
 
+@Configuration
 class UsersTest {
+
+
     @Test
     public void testUsersConstructorAndGetter()
     {
@@ -39,7 +45,4 @@ class UsersTest {
         assertEquals(000000000001L, user.getcNI());
         assertEquals(776349900, user.getTelephone());
     }
-
-
-
 }
