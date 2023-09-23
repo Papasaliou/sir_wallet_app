@@ -27,6 +27,10 @@ public class Users {
 
     public Users() {
     }
+
+    public Users(String papaSaliou, String ly, long l, long l1) {
+    }
+
     public int getId() {
         return id;
     }
