@@ -18,16 +18,16 @@ public class UsersService {
 <span class="fc" id="L18">    }</span>
 
     public int creer(Users users){
-<span class="nc" id="L21">        final Users userss = new Users();</span>
-<span class="nc" id="L22">        mapToEntity(users, userss);</span>
-<span class="nc" id="L23">        return usersRepository.save(users).getId();</span>
+<span class="fc" id="L21">        final Users userss = new Users();</span>
+<span class="fc" id="L22">        mapToEntity(users, userss);</span>
+<span class="fc" id="L23">        return usersRepository.save(users).getId();</span>
     }
 
     public List&lt;Users&gt; listeUsers(){
-<span class="nc" id="L27">        final List&lt;Users&gt; userss = usersRepository.findAll(Sort.by(&quot;id&quot;));</span>
-<span class="nc" id="L28">        return userss.stream()</span>
-<span class="nc" id="L29">                .map(users -&gt; mapToDTO(users, new Users()))</span>
-<span class="nc" id="L30">                .toList();</span>
+<span class="fc" id="L27">        final List&lt;Users&gt; userss = usersRepository.findAll(Sort.by(&quot;id&quot;));</span>
+<span class="fc" id="L28">        return userss.stream()</span>
+<span class="fc" id="L29">                .map(users -&gt; mapToDTO(users, new Users()))</span>
+<span class="fc" id="L30">                .toList();</span>
     }
 
     public Users get(final int id) {
@@ -44,24 +44,24 @@ public class UsersService {
 <span class="nc" id="L44">        usersRepository.deleteById(id);</span>
 <span class="nc" id="L45">    }</span>
     private Users mapToDTO(final Users users, final Users usersDTO) {
-<span class="nc" id="L47">        usersDTO.setId(users.getId());</span>
-<span class="nc" id="L48">        usersDTO.setPrenom(users.getPrenom());</span>
-<span class="nc" id="L49">        usersDTO.setNom(users.getNom());</span>
-<span class="nc" id="L50">        usersDTO.setcNI(users.getcNI());</span>
-<span class="nc" id="L51">        usersDTO.setTelephone(users.getTelephone());</span>
+<span class="fc" id="L47">        usersDTO.setId(users.getId());</span>
+<span class="fc" id="L48">        usersDTO.setPrenom(users.getPrenom());</span>
+<span class="fc" id="L49">        usersDTO.setNom(users.getNom());</span>
+<span class="fc" id="L50">        usersDTO.setcNI(users.getcNI());</span>
+<span class="fc" id="L51">        usersDTO.setTelephone(users.getTelephone());</span>
         //usersDTO.setComptes(users.getComptes() == null ? null : users.getComptes().getId());
-<span class="nc" id="L53">        return usersDTO;</span>
+<span class="fc" id="L53">        return usersDTO;</span>
     }
 
     private Users mapToEntity(final Users usersDTO, final Users users) {
-<span class="nc" id="L57">        users.setPrenom(usersDTO.getPrenom());</span>
-<span class="nc" id="L58">        users.setNom(usersDTO.getNom());</span>
-<span class="nc" id="L59">        users.setcNI(usersDTO.getcNI());</span>
-<span class="nc" id="L60">        users.setTelephone(usersDTO.getTelephone());</span>
+<span class="fc" id="L57">        users.setPrenom(usersDTO.getPrenom());</span>
+<span class="fc" id="L58">        users.setNom(usersDTO.getNom());</span>
+<span class="fc" id="L59">        users.setcNI(usersDTO.getcNI());</span>
+<span class="fc" id="L60">        users.setTelephone(usersDTO.getTelephone());</span>
 //        final Comptes comptes = usersDTO.getComptes() == null ? null : comptesRepository.findById(usersDTO.getComptes())
 //                .orElseThrow(() -&gt; new NotFoundException(&quot;comptes not found&quot;));
 //        users.setComptes(comptes);
-<span class="nc" id="L64">        return users;</span>
+<span class="fc" id="L64">        return users;</span>
     }
 }
 </pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.8.202204050719</span></div></body></html>

@@ -2,5 +2,5 @@ projectKey=sn.sir.wallet:sir-wallet-app
 serverUrl=http://localhost:9000
 serverVersion=10.1.0.73491
 dashboardUrl=http://localhost:9000/dashboard?id=sn.sir.wallet%3Asir-wallet-app
-ceTaskId=AYq4eTAAsYNZ2Sbgy08y
-ceTaskUrl=http://localhost:9000/api/ce/task?id=AYq4eTAAsYNZ2Sbgy08y
+ceTaskId=AYrEGbG_Sp3gQm52Ps0i
+ceTaskUrl=http://localhost:9000/api/ce/task?id=AYrEGbG_Sp3gQm52Ps0i
