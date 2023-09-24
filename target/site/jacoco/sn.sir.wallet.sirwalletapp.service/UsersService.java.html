@@ -32,11 +32,11 @@ public class UsersService {
 
     public Users get(final int id) {
         try {
-<span class="nc" id="L35">            return usersRepository.findById(id)</span>
-<span class="nc" id="L36">                    .map(users -&gt; mapToDTO(users, new Users())).</span>
-<span class="nc" id="L37">                    orElseThrow(ChangeSetPersister.NotFoundException::new);</span>
-<span class="nc" id="L38">        } catch (ChangeSetPersister.NotFoundException e) {</span>
-<span class="nc" id="L39">            throw new RuntimeException(e);</span>
+<span class="fc" id="L35">            return usersRepository.findById(id)</span>
+<span class="fc" id="L36">                    .map(users -&gt; mapToDTO(users, new Users())).</span>
+<span class="fc" id="L37">                    orElseThrow(ChangeSetPersister.NotFoundException::new);</span>
+<span class="fc" id="L38">        } catch (ChangeSetPersister.NotFoundException e) {</span>
+<span class="fc" id="L39">            throw new RuntimeException(e);</span>
         }
     }
 

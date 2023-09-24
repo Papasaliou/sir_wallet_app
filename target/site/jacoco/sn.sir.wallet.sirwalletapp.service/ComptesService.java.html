@@ -20,10 +20,10 @@ public class ComptesService {
 <span class="fc" id="L20">        this.comptesRepository= comptesRepository;</span>
 <span class="fc" id="L21">    }</span>
     public List&lt;Comptes&gt; listeCompte() {
-<span class="nc" id="L23">        final List&lt;Comptes&gt; comptess = comptesRepository.findAll(Sort.by(&quot;id&quot;));</span>
-<span class="nc" id="L24">        return comptess.stream()</span>
-<span class="nc" id="L25">                .map(comptes -&gt; mapToDTO(comptes, new Comptes()))</span>
-<span class="nc" id="L26">                .toList();</span>
+<span class="fc" id="L23">        final List&lt;Comptes&gt; comptess = comptesRepository.findAll(Sort.by(&quot;id&quot;));</span>
+<span class="fc" id="L24">        return comptess.stream()</span>
+<span class="fc" id="L25">                .map(comptes -&gt; mapToDTO(comptes, new Comptes()))</span>
+<span class="fc" id="L26">                .toList();</span>
     }
     public int creerCompte(final Comptes comptesDTO) {
 <span class="nc" id="L29">        final Comptes comptes = new Comptes();</span>
@@ -33,9 +33,9 @@ public class ComptesService {
 
     public Comptes getCompteById(final int id) {
         try {
-<span class="nc" id="L36">            return comptesRepository.findById(id)</span>
-<span class="nc" id="L37">                    .map(comptes -&gt; mapToDTO(comptes, new Comptes()))</span>
-<span class="nc" id="L38">                    .orElseThrow(ChangeSetPersister.NotFoundException::new);</span>
+<span class="fc" id="L36">            return comptesRepository.findById(id)</span>
+<span class="fc" id="L37">                    .map(comptes -&gt; mapToDTO(comptes, new Comptes()))</span>
+<span class="fc" id="L38">                    .orElseThrow(ChangeSetPersister.NotFoundException::new);</span>
 <span class="nc" id="L39">        } catch (ChangeSetPersister.NotFoundException e) {</span>
 <span class="nc" id="L40">            throw new RuntimeException(e);</span>
         }
@@ -43,12 +43,12 @@ public class ComptesService {
 
 
     private Comptes mapToDTO(final Comptes comptes, final Comptes comptesDTO) {
-<span class="nc" id="L46">        comptesDTO.setId(comptes.getId());</span>
-<span class="nc" id="L47">        comptesDTO.setSolde(comptes.getSolde());</span>
-<span class="nc" id="L48">        comptesDTO.setDateOuverture(comptes.getDateOuverture());</span>
-<span class="nc" id="L49">        comptesDTO.setMotDePasse(comptes.getMotDePasse());</span>
-<span class="nc" id="L50">        comptesDTO.setIdUser(comptes.getIdUser());</span>
-<span class="nc" id="L51">        return comptesDTO;</span>
+<span class="fc" id="L46">        comptesDTO.setId(comptes.getId());</span>
+<span class="fc" id="L47">        comptesDTO.setSolde(comptes.getSolde());</span>
+<span class="fc" id="L48">        comptesDTO.setDateOuverture(comptes.getDateOuverture());</span>
+<span class="fc" id="L49">        comptesDTO.setMotDePasse(comptes.getMotDePasse());</span>
+<span class="fc" id="L50">        comptesDTO.setIdUser(comptes.getIdUser());</span>
+<span class="fc" id="L51">        return comptesDTO;</span>
     }
 
     private Comptes mapToEntity(final Comptes comptesDTO, final Comptes comptes) {

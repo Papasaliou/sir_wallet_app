@@ -1,7 +1,10 @@
+sn\sir\wallet\sirwalletapp\service\ComptesServiceTest.class
 sn\sir\wallet\sirwalletapp\model\TransactionsTest.class
 sn\sir\wallet\sirwalletapp\controller\UsersControllerTest.class
+sn\sir\wallet\sirwalletapp\controller\ComptesControllerTest.class
 sn\sir\wallet\sirwalletapp\SirWalletAppApplicationTests.class
 sn\sir\wallet\sirwalletapp\service\TransactionsServiceTest.class
+sn\sir\wallet\sirwalletapp\controller\TransactionsControllerTest.class
 sn\sir\wallet\sirwalletapp\model\ComptesTest.class
 sn\sir\wallet\sirwalletapp\model\UsersTest.class
 sn\sir\wallet\sirwalletapp\service\UsersServiceTest.class
