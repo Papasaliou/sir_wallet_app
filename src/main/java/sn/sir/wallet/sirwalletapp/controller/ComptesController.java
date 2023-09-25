@@ -14,6 +14,10 @@ import java.util.List;
 @RestController
 @RequestMapping(path = "Comptes")
 public class ComptesController {
+    public ComptesController()
+    {
+
+    }
     public ComptesService comptesService;
 
     public ComptesController(ComptesService comptesService) {
@@ -35,10 +39,5 @@ public class ComptesController {
     public Comptes CompteById(@PathVariable int id) {
         return this.comptesService.getCompteById(id);
     }
-
-
-
-
-
 
 }
