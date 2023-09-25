@@ -32,17 +32,6 @@ public class Comptes {
     public Comptes() {
     }
 
-    public Comptes(int  l, double v) {
-        this.id=l;
-        this.solde=solde;
-    }
-    public Comptes( double v,Date dateOuverture,String mdp,int iduser) {
-        this.solde=solde;
-        this.dateOuverture=dateOuverture;
-        this.motDePasse=mdp;
-        this.idUser=iduser;
-    }
-
     public int getId() {
         return id;
     }
