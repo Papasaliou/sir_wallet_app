@@ -44,4 +44,22 @@ class TransactionsTest {
         assertEquals(772345522L, user.getTelephone());
     }
 
+    @Test
+    public void testTransactionsConstructorAndSetter() {
+
+        Transactions transaction = new Transactions();
+        transaction.setId(30);
+        transaction.setMontant(100.0);
+        transaction.setDate(new Date(1));
+        transaction.setEtat(1);
+        transaction.setIdE(2);
+        transaction.setIdR(3);
+        assertEquals(30, transaction.getId());
+        assertEquals(100.0, transaction.getMontant());
+        assertEquals(new Date(1), transaction.getDate());
+        assertEquals(1, transaction.getEtat());
+        assertEquals(2, transaction.getIdE());
+        assertEquals(3, transaction.getIdR());
+    }
+
 }
