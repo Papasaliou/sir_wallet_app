@@ -51,7 +51,6 @@ class UsersControllerTest {
         this.usersController = usersController;
         //this.usersService1=usersService1;
     }
-
     @Test
     public void testGetUserById() {
         int id = 10;
@@ -59,21 +58,11 @@ class UsersControllerTest {
         assertNotNull(users);
         assertEquals(id, users.getId());
     }
+    @Test
+    public void listUser(){
+        int nbUsers=usersRepository.findAll().size();
+        int nb=usersController.listeClient().size();
+        assertEquals(nbUsers,nb);
+    }
 
-//    @Test
-//    public void testListeClient() throws Exception {
-//        // Mock la méthode listeUsers() du service
-//        List<Users> mockUsers = new ArrayList<>();
-//        mockUsers.add(new Users(1, "Abdou","Mbaye",2536638209L,76255432L));
-//        mockUsers.add(new Users(2, "Serigne","Mbaye",2536638209L,76255432L));
-//        when(usersService1.listeUsers()).thenReturn(mockUsers);
-//
-//        // Appel de la méthode listeClient() du contrôleur
-//        mockMvc.perform(get("/users"))
-//                .andExpect(status().isOk())
-//                .andExpect(jsonPath("$[0].id").value(1L))
-//                .andExpect(jsonPath("$[0].prenom").value("Abdou"))
-//                .andExpect(jsonPath("$[1].id").value(2L))
-//                .andExpect(jsonPath("$[1].prenom").value("Serigne"));
-//    }
 }

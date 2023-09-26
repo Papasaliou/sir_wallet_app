@@ -44,6 +44,13 @@ class ComptesControllerTest {
         assertNotNull(comptes);
         assertEquals(id, comptes.getId());
     }
+    @Test
+    public void testGetById() {
+        int id = 9;
+        Comptes comptes   = comptesController.CompteById(id);
+        assertNotNull(comptes);
+        assertEquals(id, comptes.getId());
+    }
 
     @Test
     public void testCreer() {

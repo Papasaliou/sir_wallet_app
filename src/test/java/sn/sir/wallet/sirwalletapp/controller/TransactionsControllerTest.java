@@ -30,4 +30,10 @@ class TransactionsControllerTest {
         assertNotNull(transactionss);
         assertEquals(id, transactionss.getId());
     }
+    @Test
+    public void listTransaction()
+    {
+        int transactNb=transactionsRepository.findAll().size();
+        int Nbtransac=transactionsController.listTransaction().size();
+    }
 }
