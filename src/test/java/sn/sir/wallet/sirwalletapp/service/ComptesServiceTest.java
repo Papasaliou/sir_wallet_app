@@ -1,5 +1,6 @@
 package sn.sir.wallet.sirwalletapp.service;
 
+import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 import org.mockito.Mock;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -48,5 +49,25 @@ class ComptesServiceTest {
         assertThat(comptes).isNotNull();
         assertThat(comptes.getId()).isEqualTo(9);
         assertThat(comptes.getSolde()).isEqualTo(20094.0);
+    }
+    @Test
+    public void testCreerCompte() {
+        // Création d'un compte DTO
+        Comptes comptes = new Comptes(28, 20094.0,new Date(),"2536638209L",8);
+
+        // Appel de la méthode à tester
+        int idCompte = comptesService.creerCompte(comptes);
+
+        Optional<Comptes> comptesOptional = comptesRepository.findById(idCompte);
+        if (comptesOptional.isPresent()) {
+            Comptes comptesRetrouve = comptesOptional.get();
+            // Vérification des propriétés du compte
+            Assertions.assertEquals(comptes.getId(), comptesRetrouve.getId());
+            Assertions.assertEquals(comptes.getSolde(), comptesRetrouve.getSolde());
+            Assertions.assertEquals(comptes.getIdUser(), comptesRetrouve.getIdUser());
+        } else {
+            // Le compte n'existe pas
+        }
+
     }
 }

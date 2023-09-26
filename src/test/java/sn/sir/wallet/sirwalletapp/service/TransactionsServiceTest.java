@@ -1,5 +1,6 @@
 package sn.sir.wallet.sirwalletapp.service;
 
+import org.hibernate.Hibernate;
 import org.junit.Before;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
@@ -17,6 +18,7 @@ import sn.sir.wallet.sirwalletapp.repository.TransactionsRepository;
 import sn.sir.wallet.sirwalletapp.repository.UsersRepository;
 
 import java.util.Date;
+import java.util.Optional;
 
 import static org.junit.jupiter.api.Assertions.*;
 @SpringBootTest
@@ -27,14 +29,18 @@ class TransactionsServiceTest {
     @Autowired
     private final TransactionsService transactionsService;
     @Autowired
-    public TransactionsServiceTest( TransactionsService transactionsService,ComptesRepository comptesRepository) {
+    private ComptesService comptesService;
+    @Autowired
+    public TransactionsServiceTest( TransactionsService transactionsService,TransactionsRepository transactionsRepository,ComptesRepository comptesRepository,ComptesService comptesService) {
         this.transactionsService = transactionsService;
+        this.transactionsRepository=transactionsRepository;
         this.comptesRepository=comptesRepository;
+        this.comptesService=comptesService;
     }
 //    @Test
 //    public void testCreer() {
 //        // Création d'un compte
-//        Transactions transactions = new Transactions(12,100.0,new Date(),1,13,20);
+//        Transactions transactions = new Transactions(20,100.0,new Date(),1,1,3);
 ////
 //        // Appel de la méthode à tester
 //        transactionsService.createTransaction(transactions);
@@ -96,5 +102,28 @@ class TransactionsServiceTest {
         assertEquals(solde - montantTransaction, comptes.getSolde());
     }
 
+//    @Test
+//    public void testAnnulerTransaction() {
+//        // Création de deux comptes
+//        Comptes comptes1 =comptesRepository.findById(10).get();
+//        Comptes comptes2 = comptesRepository.findById(11).get();
+//        // Création d'une transaction
+//        Transactions transactions = new Transactions(28,500.0,new Date(),1,comptes1.getId(),comptes2.getId());
+//        // Enregistrement de la transaction dans la base de données
+//        int id=transactionsRepository.save(transactions).getId();
+//        // Appel de la méthode à tester
+//        Optional<Transactions> transactionsOptional = transactionsRepository.findById(transactions.getId());
+//        if (transactionsOptional.isPresent()) {
+//           Transactions  transactionTrouvee = transactionsOptional.get();
+//            transactionsService.annullerTransaction(transactionTrouvee.getId());
+//            Assertions.assertEquals(comptes1.getSolde(), 1500.0);
+//            Assertions.assertEquals(comptes2.getSolde(), 1500.0);
+//            // Vérification de l'état de la transaction
+//            Transactions transactionAnnulee = transactionsRepository.findById(transactions.getId()).get();
+//            Assertions.assertEquals(transactionAnnulee.getEtat(), 0);
+//        } else {
+//            // Le compte n'existe pas
+//        }
 
-}
+
+    }
