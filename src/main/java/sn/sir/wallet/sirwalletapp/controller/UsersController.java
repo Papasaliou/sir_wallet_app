@@ -29,10 +29,6 @@ public class UsersController {
     public Users userById(@PathVariable int id) {
         return this.usersService.get(id);
     }
-    @PostMapping("{id}")
-    public void  deleteUser(@PathVariable  int id) {
-        usersService.delete(id);
-    }
 
 //
 }
