@@ -64,5 +64,11 @@ class UsersControllerTest {
         int nb=usersController.listeClient().size();
         assertEquals(nbUsers,nb);
     }
+    @Test
+    public void creatUsers()
+    {
+        Users users=new Users(10,"Khady","Kandji",2736637209L,772534422L);
+        usersController.creer(users);
+    }
 
 }
