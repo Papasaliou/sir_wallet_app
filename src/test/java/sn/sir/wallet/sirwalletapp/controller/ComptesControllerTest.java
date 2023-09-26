@@ -67,5 +67,11 @@ class ComptesControllerTest {
         Assertions.assertEquals(compteTrouve.getMotDePasse(), "Compte1");
         Assertions.assertEquals(compteTrouve.getSolde(), 100.0);
     }
+    @Test
+    public void creerCompte()
+    {
+        Comptes comptes=new Comptes(29,1934.2,new Date(),"uyte354",9);
+        comptesController.creer(comptes);
+    }
 
 }
