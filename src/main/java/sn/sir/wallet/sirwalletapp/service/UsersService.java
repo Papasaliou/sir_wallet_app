@@ -40,16 +40,12 @@ public class UsersService {
         }
     }
 
-    public void delete(final int id) {
-        usersRepository.deleteById(id);
-    }
     private Users mapToDTO(final Users users, final Users usersDTO) {
         usersDTO.setId(users.getId());
         usersDTO.setPrenom(users.getPrenom());
         usersDTO.setNom(users.getNom());
         usersDTO.setcNI(users.getcNI());
         usersDTO.setTelephone(users.getTelephone());
-        //usersDTO.setComptes(users.getComptes() == null ? null : users.getComptes().getId());
         return usersDTO;
     }
 
@@ -58,9 +54,6 @@ public class UsersService {
         users.setNom(usersDTO.getNom());
         users.setcNI(usersDTO.getcNI());
         users.setTelephone(usersDTO.getTelephone());
-//        final Comptes comptes = usersDTO.getComptes() == null ? null : comptesRepository.findById(usersDTO.getComptes())
-//                .orElseThrow(() -> new NotFoundException("comptes not found"));
-//        users.setComptes(comptes);
         return users;
     }
 }
