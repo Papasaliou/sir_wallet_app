@@ -14,6 +14,7 @@ import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.setup.MockMvcBuilders;
 import sn.sir.wallet.sirwalletapp.SirWalletAppApplication;
+import sn.sir.wallet.sirwalletapp.model.Comptes;
 import sn.sir.wallet.sirwalletapp.model.Users;
 import sn.sir.wallet.sirwalletapp.repository.UsersRepository;
 import sn.sir.wallet.sirwalletapp.service.UsersService;
@@ -69,6 +70,13 @@ class UsersControllerTest {
     {
         Users users=new Users(10,"Khady","Kandji",2736637209L,772534422L);
         usersController.creer(users);
+    }
+    @Test
+    public void testGetById() {
+        int id = 10;
+        Users user   = usersController.userById(id);
+        assertNotNull(user);
+        assertEquals(id, user.getId());
     }
 
 }
