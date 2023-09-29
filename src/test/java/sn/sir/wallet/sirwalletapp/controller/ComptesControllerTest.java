@@ -73,5 +73,12 @@ class ComptesControllerTest {
         Comptes comptes=new Comptes(29,1934.2,new Date(),"uyte354",9);
         comptesController.creer(comptes);
     }
+    @Test
+    public void listeCompte()
+    {
+        int nbrCompte=comptesRepository.findAll().size();
+        int nbrCompteTrouver=comptesController.listCompte().size();
+        assertEquals(nbrCompte,nbrCompteTrouver);
+    }
 
 }
