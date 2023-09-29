@@ -36,4 +36,12 @@ class TransactionsControllerTest {
         int transactNb=transactionsRepository.findAll().size();
         int Nbtransac=transactionsController.listTransaction().size();
     }
+    @Test
+    public void getTransactionById(){
+        int idTransaction=10;
+
+        Transactions transaction   = transactionsController.transactionsById(idTransaction);
+        assertNotNull(transaction);
+        assertEquals(idTransaction, transaction.getId());
+    }
 }
