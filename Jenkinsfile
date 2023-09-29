@@ -17,7 +17,7 @@ pipeline {
         }
         stage("SonarQube Analysis") {
             steps {
-                bat 'mvn sonar:sonar -Dsonar.host.url=http://192.168.1.30:9000'
+                bat 'mvn sonar:sonar -Dsonar.host.url=http://192.168.1.6:9000'
             }
         }
         stage('Approve Deployment') {
